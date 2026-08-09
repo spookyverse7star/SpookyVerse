@@ -1,5 +1,4 @@
 User-agent: *
-
 Allow: /
 
-Sitemap: https://YOUR_USERNAME.github.io/SpookyVerse/sitemap.xml
+Sitemap: https://spookyverse7star.github.io/SpookyVerse/sitemap.xml
