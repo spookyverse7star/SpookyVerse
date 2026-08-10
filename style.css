@@ -1275,3 +1275,278 @@ border-color:#d62828;
     }
 
 }
+/* =================================
+   SPOOKYVERSE FINAL MOBILE FIX
+================================= */
+
+@media (max-width: 600px) {
+
+    /* NAVBAR */
+    .navbar {
+        padding: 12px 15px;
+        gap: 10px;
+    }
+
+    .logo {
+        font-size: 22px;
+    }
+
+    .navbar ul {
+        width: 100%;
+        gap: 10px;
+        justify-content: center;
+    }
+
+    .navbar ul a {
+        font-size: 12px;
+    }
+
+
+    /* HERO */
+    .hero {
+        min-height: 100svh;
+        height: auto;
+        padding: 130px 18px 70px;
+    }
+
+    .hero-content {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .small-title {
+        font-size: 11px;
+        letter-spacing: 2px;
+        margin-bottom: 14px;
+    }
+
+    .hero h1 {
+        font-size: 38px;
+        line-height: 1.15;
+        margin-bottom: 20px;
+    }
+
+    .hero-text {
+        font-size: 15px;
+        line-height: 1.7;
+        margin-bottom: 30px;
+    }
+
+    .buttons {
+        gap: 12px;
+    }
+
+    .btn,
+    .btn2 {
+        width: 100%;
+        padding: 13px 20px;
+        text-align: center;
+    }
+
+
+    /* SECTIONS */
+    .section {
+        width: 100%;
+        padding: 55px 18px;
+    }
+
+    .section h2 {
+        font-size: 28px;
+        line-height: 1.3;
+        margin-bottom: 28px;
+    }
+
+
+    /* STORY CARDS */
+    .story-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .story-card img {
+        height: 270px;
+    }
+
+    .story-card h3 {
+        font-size: 20px;
+    }
+
+    .story-card p {
+        font-size: 14px;
+        line-height: 1.6;
+    }
+
+
+    /* CATEGORIES */
+    .category-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .category-card {
+        height: 210px;
+    }
+
+    .category-overlay {
+        padding: 20px;
+    }
+
+    .category-overlay h3 {
+        font-size: 21px;
+    }
+
+
+    /* LATEST STORIES */
+    .latest-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .latest-card img {
+        height: 200px;
+    }
+
+    .latest-content {
+        padding: 18px;
+    }
+
+    .latest-content h3 {
+        font-size: 21px;
+    }
+
+    .latest-content p {
+        font-size: 14px;
+    }
+
+
+    /* STORIES PAGE */
+    .stories-heading {
+        padding-top: 20px;
+    }
+
+    .stories-heading h1 {
+        font-size: 32px;
+        line-height: 1.2;
+    }
+
+    .stories-heading p {
+        font-size: 15px;
+        line-height: 1.7;
+    }
+
+    .search-box {
+        margin: 25px 0 30px;
+    }
+
+    .search-box input {
+        width: 100%;
+        padding: 14px;
+        font-size: 15px;
+    }
+
+    .story-filters {
+        gap: 8px;
+        margin-bottom: 30px;
+    }
+
+    .filter-btn {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+
+
+    /* STORY PAGE */
+    .story-header {
+        margin: 120px auto 40px;
+        padding: 0 18px;
+    }
+
+    .story-cover {
+        border-radius: 12px;
+        margin-bottom: 22px;
+    }
+
+    .story-category {
+        padding: 7px 12px;
+        font-size: 13px;
+    }
+
+    .story-header h1 {
+        font-size: 31px;
+        line-height: 1.25;
+        margin-bottom: 16px;
+    }
+
+    .story-details {
+        gap: 8px 15px;
+        font-size: 13px;
+    }
+
+    .story-content {
+        padding: 0 18px;
+        margin-bottom: 60px;
+    }
+
+    .story-content p {
+        font-size: 17px;
+        line-height: 1.9;
+        margin-bottom: 24px;
+    }
+
+
+    /* NEWSLETTER */
+    .newsletter {
+        padding: 60px 18px;
+    }
+
+    .newsletter-box {
+        margin: 0;
+        padding: 35px 20px;
+        border-radius: 16px;
+    }
+
+    .newsletter-box h2 {
+        font-size: 30px;
+        line-height: 1.2;
+    }
+
+    .newsletter-box p {
+        font-size: 15px;
+        line-height: 1.6;
+    }
+
+    .newsletter form {
+        flex-direction: column;
+    }
+
+    .newsletter input,
+    .newsletter button {
+        width: 100%;
+    }
+
+
+    /* FOOTER */
+    footer {
+        padding: 50px 18px 25px;
+    }
+
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: 28px;
+        text-align: center;
+    }
+
+    .footer-container h3 {
+        font-size: 26px;
+    }
+
+    .footer-container a {
+        font-size: 14px;
+    }
+
+    .copyright {
+        font-size: 12px;
+        line-height: 1.6;
+    }
+
+}
