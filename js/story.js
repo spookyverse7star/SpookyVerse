@@ -51,6 +51,24 @@ document.addEventListener("DOMContentLoaded", function () {
         content.innerHTML = story.content;
     }
 
+    // ===============================
+    // YOUTUBE VIDEO
+    // ===============================
+
+    const youtubeSection = document.getElementById("youtube-section");
+    const youtubePlayer = document.getElementById("youtube-player");
+    const youtubeLink = document.getElementById("youtube-link");
+
+    if (youtubeSection && story.youtubeId) {
+        youtubeSection.hidden = false;
+
+        const videoUrl = "https://www.youtube.com/watch?v=" + story.youtubeId;
+        const embedUrl = "https://www.youtube-nocookie.com/embed/" + story.youtubeId + "?rel=0&origin=" + encodeURIComponent(window.location.origin);
+
+        youtubePlayer.src = embedUrl;
+        youtubeLink.href = videoUrl;
+    }
+
 
     // ===============================
     // SEO TITLE

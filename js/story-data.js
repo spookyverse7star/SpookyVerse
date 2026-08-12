@@ -6,6 +6,7 @@ const stories = {
         image: "images/story1.jpg",
         date: "📅 August 2026",
         time: "⏱ 18 min read",
+        youtubeId: "XYW2M4PeMFE",
 
         content: `
         <p>

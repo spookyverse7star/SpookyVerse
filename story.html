@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <meta name="referrer" content="strict-origin-when-cross-origin">
 
 <meta charset="UTF-8">
 
@@ -58,176 +59,117 @@
 
 
 <!-- =========================
-     STORY HEADER
+     STORY PAGE
 ========================= -->
 
-<section class="story-header">
+<main class="story-page">
 
-<a href="stories.html" class="back-btn">
-← Back to Stories
-</a>
+<a href="stories.html" class="back-btn">← Back to Stories</a>
 
-<img
-id="story-cover"
-src="images/story1.jpg"
-class="story-cover"
-alt="Story Cover"
->
+<div class="story-layout">
 
-<div class="story-meta">
+    <article class="story-main">
 
-<span id="story-category" class="story-category">
-👻 Ghost Story
-</span>
+        <section class="story-intro">
+            <div class="story-poster-wrap">
+                <img
+                    id="story-cover"
+                    src="images/story1.jpg"
+                    class="story-cover"
+                    alt="Story Cover"
+                >
+            </div>
 
-<h1 id="story-title">
-13वीं मंजिल का आखिरी किरायेदार
-</h1>
+            <div class="story-summary">
+                <span id="story-category" class="story-category">👻 Ghost Story</span>
 
-<div class="story-details">
+                <h1 id="story-title">13वीं मंजिल का आखिरी किरायेदार</h1>
 
-<span>👤 VN Stories</span>
-
-<span id="story-date">
-📅 August 2026
-</span>
-
-<span id="story-time">
-⏱ 18 min read
-</span>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- =========================
-     STORY CONTENT
-========================= -->
-
+                <div class="story-details">
+                    <span>👤 VN Stories</span>
+                    <span id="story-date">📅 August 2026</span>
+                    <span id="story-time">⏱ 18 min read</span>
+                </div>
+            </div>
+        </section>
 <section class="story-content">
+            <h2>📖 कहानी पढ़ें</h2>
+            <div id="story-content" class="reading-container">
+                <p>कुछ इमारतें सिर्फ़ ईंट और सीमेंट से नहीं बनतीं...</p>
+            </div>
+        </section>
 
-<div
-id="story-content"
-class="reading-container"
->
+    </article>
 
-<p>
-कुछ इमारतें सिर्फ़ ईंट और सीमेंट से नहीं बनतीं...
-कुछ इमारतें अपने अंदर दबी चीखों से खड़ी होती हैं...
-</p>
+    <aside class="story-sidebar">
+
+        <section id="youtube-section" class="youtube-section" hidden>
+            <h2>🎬 Watch This Story</h2>
+            <div class="youtube-card">
+                <div class="youtube-frame">
+                    <iframe
+                        id="youtube-player"
+                        title="Watch this horror story on YouTube"
+                        src=""
+                        loading="lazy"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <a id="youtube-link" class="youtube-link" href="#" target="_blank" rel="noopener noreferrer">
+                    ▶ Watch on YouTube
+                </a>
+            </div>
+        </section>
+
+        <div class="sidebar-box">
+            <h3>Latest Horror Stories</h3>
+            <a href="story.html?story=2" class="sidebar-story">
+                <img src="images/story2.jpg" alt="श्मशान घाट का चौकीदार">
+                <span>श्मशान घाट का चौकीदार</span>
+            </a>
+            <a href="story.html?story=3" class="sidebar-story">
+                <img src="images/story3.jpg" alt="रेलवे प्लेटफॉर्म 0">
+                <span>रेलवे प्लेटफॉर्म 0</span>
+            </a>
+            <a href="story.html?story=4" class="sidebar-story">
+                <img src="images/story4.jpg" alt="कमरा नंबर 307">
+                <span>कमरा नंबर 307</span>
+            </a>
+            <a href="stories.html" class="sidebar-more">View All Stories →</a>
+        </div>
+    </aside>
 
 </div>
 
-</section>
-
+</main>
 
 <!-- =========================
      MORE STORIES
 ========================= -->
 
-<section class="section">
-
-<h2>
-More Horror Stories
-</h2>
-
+<section class="section story-more-section">
+<h2>More Horror Stories</h2>
 <div class="story-grid">
 
-
-<a
-href="story.html?story=2"
-class="story-card"
->
-
-<img
-src="images/story2.jpg"
-alt="श्मशान घाट का चौकीदार"
->
-
-<div class="story-info">
-
-<span class="badge">
-Ghost Story
-</span>
-
-<h3>
-श्मशान घाट का चौकीदार
-</h3>
-
-<p>
-Every midnight, someone knocked on the gate.
-</p>
-
-</div>
-
+<a href="story.html?story=2" class="story-card">
+<img src="images/story2.jpg" alt="श्मशान घाट का चौकीदार">
+<div class="story-info"><span class="badge">Ghost Story</span><h3>श्मशान घाट का चौकीदार</h3><p>Every midnight, someone knocked on the gate.</p></div>
 </a>
 
-
-<a
-href="story.html?story=3"
-class="story-card"
->
-
-<img
-src="images/story3.jpg"
-alt="रेलवे प्लेटफॉर्म 0"
->
-
-<div class="story-info">
-
-<span class="badge">
-Urban Legend
-</span>
-
-<h3>
-रेलवे प्लेटफॉर्म 0
-</h3>
-
-<p>
-A mysterious train appears only after midnight.
-</p>
-
-</div>
-
+<a href="story.html?story=3" class="story-card">
+<img src="images/story3.jpg" alt="रेलवे प्लेटफॉर्म 0">
+<div class="story-info"><span class="badge">Urban Legend</span><h3>रेलवे प्लेटफॉर्म 0</h3><p>A mysterious train appears only after midnight.</p></div>
 </a>
 
-
-<a
-href="stories.html"
-class="story-card"
->
-
-<img
-src="images/story1.jpg"
-alt="More Horror Stories"
->
-
-<div class="story-info">
-
-<span class="badge">
-Explore
-</span>
-
-<h3>
-More Horror Stories
-</h3>
-
-<p>
-Enter the SpookyVerse and discover more nightmares.
-</p>
-
-</div>
-
+<a href="stories.html" class="story-card">
+<img src="images/story1.jpg" alt="More Horror Stories">
+<div class="story-info"><span class="badge">Explore</span><h3>More Horror Stories</h3><p>Enter the SpookyVerse and discover more nightmares.</p></div>
 </a>
 
-
 </div>
-
 </section>
-
 
 <!-- =========================
      FOOTER
