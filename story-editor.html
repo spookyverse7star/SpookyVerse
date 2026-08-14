@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SpookyVerse - Story Editor</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif;}
+body{background:#0b0b0b;color:white;}
+.header{height:70px;background:#111;border-bottom:1px solid #292929;display:flex;align-items:center;justify-content:space-between;padding:0 30px;}
+.logo{font-size:24px;font-weight:bold;color:#ff2a2a;}
+.logo span{color:white;}
+.back-btn{background:#222;color:white;border:1px solid #333;padding:10px 18px;border-radius:7px;cursor:pointer;}
+.container{max-width:1200px;margin:auto;padding:30px;}
+.page-title{margin-bottom:25px;}
+.page-title p{color:#888;margin-top:6px;}
+.editor-grid{display:grid;grid-template-columns:1fr 1fr;gap:25px;}
+.box{background:#151515;border:1px solid #292929;border-radius:10px;padding:25px;}
+.form-group{margin-bottom:18px;}
+label{display:block;margin-bottom:8px;font-weight:bold;}
+input,select,textarea{width:100%;background:#0d0d0d;border:1px solid #333;color:white;border-radius:7px;padding:12px;}
+textarea{min-height:300px;resize:vertical;}
+.image-preview,.preview-image{width:100%;height:220px;background:#111;border:1px dashed #444;border-radius:7px;display:flex;align-items:center;justify-content:center;overflow:hidden;color:#666;}
+.image-preview img,.preview-image img{width:100%;height:100%;object-fit:cover;}
+.preview-content{padding-top:20px;}
+.preview-category{color:#ff2a2a;margin-bottom:10px;}
+.preview-title{font-size:28px;margin-bottom:12px;}
+.preview-meta{color:#777;font-size:13px;margin-bottom:20px;}
+.preview-story{line-height:1.8;color:#ccc;white-space:pre-line;}
+.buttons{display:flex;gap:12px;margin-top:20px;}
+.publish-btn,.draft-btn{border:none;padding:13px 22px;border-radius:7px;font-weight:bold;cursor:pointer;}
+.publish-btn{background:#d00000;color:white;}
+.draft-btn{background:#2a2a2a;color:white;}
+@media(max-width:850px){.editor-grid{grid-template-columns:1fr;}.container{padding:20px;}}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+<div class="logo">👻 <span>Spooky</span>Verse</div>
+<button class="back-btn" onclick="window.location.href='dashboard.html'">← Dashboard</button>
+</header>
+
+<main class="container">
+
+<div class="page-title">
+<h1>📝 Add New Story</h1>
+<p>Create a new horror story for SpookyVerse.</p>
+</div>
+
+<div class="editor-grid">
+
+<section class="box">
+
+<div class="form-group">
+<label>Story Title</label>
+<input id="title" type="text" placeholder="Enter story title" oninput="updatePreview()">
+</div>
+
+<div class="form-group">
+<label>Category</label>
+<select id="category" onchange="updatePreview()">
+<option>👻 Ghost Stories</option>
+<option>🏚️ Haunted House</option>
+<option>🌫️ Paranormal</option>
+<option>🌕 Urban Legends</option>
+</select>
+</div>
+
+<div class="form-group">
+<label>Story Image</label>
+<input id="image" type="text" placeholder="images/story4.jpg" oninput="updatePreview()">
+<div id="imagePreview" class="image-preview">🖼️ Image Preview</div>
+</div>
+
+<div class="form-group">
+<label>Date</label>
+<input id="date" type="date" onchange="updatePreview()">
+</div>
+
+<div class="form-group">
+<label>Reading Time</label>
+<input id="time" type="text" placeholder="18 min read" oninput="updatePreview()">
+</div>
+
+<div class="form-group">
+<label>Tags</label>
+<input id="tags" type="text" placeholder="ghost, horror">
+</div>
+
+<div class="form-group">
+<label>Story Content</label>
+<textarea id="story" placeholder="Write your Hindi horror story here..." oninput="updatePreview()"></textarea>
+</div>
+
+<div class="buttons">
+<button class="publish-btn" onclick="publishStory()">🚀 Publish Story</button>
+<button class="draft-btn" onclick="saveDraft()">💾 Save Draft</button>
+</div>
+
+</section>
+
+<section class="box">
+
+<h2>👁️ Live Preview</h2>
+
+<div id="previewImage" class="preview-image">🖼️ Story Image</div>
+
+<div class="preview-content">
+<div id="previewCategory" class="preview-category">👻 Ghost Stories</div>
+<h1 id="previewTitle" class="preview-title">Your Story Title</h1>
+<div id="previewMeta" class="preview-meta">📅 Date • ⏱️ Reading Time</div>
+<div id="previewStory" class="preview-story">Your story preview will appear here...</div>
+</div>
+
+</section>
+
+</div>
+
+</main>
+
+<script>
+
+if(localStorage.getItem("spookyAdmin")!=="true"){
+window.location.href="login.html";
+}
+
+function updatePreview(){
+
+const title=document.getElementById("title").value;
+const category=document.getElementById("category").value;
+const image=document.getElementById("image").value;
+const date=document.getElementById("date").value;
+const time=document.getElementById("time").value;
+const story=document.getElementById("story").value;
+
+document.getElementById("previewTitle").textContent=title||"Your Story Title";
+document.getElementById("previewCategory").textContent=category;
+document.getElementById("previewMeta").textContent="📅 "+(date||"Date")+" • ⏱️ "+(time||"Reading Time");
+document.getElementById("previewStory").textContent=story||"Your story preview will appear here...";
+
+if(image.trim()!==""){
+document.getElementById("previewImage").innerHTML='<img src="'+image+'">';
+document.getElementById("imagePreview").innerHTML='<img src="'+image+'">';
+}else{
+document.getElementById("previewImage").innerHTML="🖼️ Story Image";
+document.getElementById("imagePreview").innerHTML="🖼️ Image Preview";
+}
+
+}
+
+function publishStory(){
+
+    let stories = JSON.parse(localStorage.getItem("spookyStories")) || [];
+
+    const editIndex = localStorage.getItem("editStoryIndex");
+
+    const newStory = {
+        id: editIndex !== null ? stories[editIndex].id : Date.now(),
+        title: document.getElementById("title").value.trim(),
+        category: document.getElementById("category").value,
+        image: document.getElementById("image").value.trim(),
+        date: document.getElementById("date").value,
+        time: document.getElementById("time").value.trim(),
+        tags: document.getElementById("tags").value.trim(),
+        content: document.getElementById("story").value.trim()
+    };
+
+    if(!newStory.title || !newStory.content){
+        alert("Please enter both title and story.");
+        return;
+    }
+
+    if(editIndex !== null){
+
+        stories[editIndex] = newStory;
+
+        localStorage.removeItem("editStoryIndex");
+
+        alert("Story Updated Successfully!");
+
+    }else{
+
+        stories.push(newStory);
+
+        alert("Story Published Successfully!");
+
+    }
+
+    localStorage.setItem("spookyStories", JSON.stringify(stories));
+
+    window.location.href = "dashboard.html";
+    
+    loadEditStory();
+}
+</script>
+
+</body>
+</html>

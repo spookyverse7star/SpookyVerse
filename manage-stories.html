@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manage Stories - SpookyVerse</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+background:#0b0b0b;
+color:white;
+padding:30px;
+}
+
+.header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:30px;
+}
+
+.logo{
+font-size:28px;
+font-weight:bold;
+color:#ff2a2a;
+}
+
+.logo span{
+color:white;
+}
+
+.back-btn{
+background:#222;
+color:white;
+border:none;
+padding:10px 18px;
+border-radius:8px;
+cursor:pointer;
+}
+
+.back-btn:hover{
+background:#333;
+}
+
+.table-box{
+background:#151515;
+border:1px solid #292929;
+border-radius:12px;
+overflow:hidden;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+th{
+background:#1d1d1d;
+padding:15px;
+text-align:left;
+color:#ff4444;
+}
+
+td{
+padding:15px;
+border-top:1px solid #292929;
+vertical-align:middle;
+}
+
+.thumb{
+width:80px;
+height:50px;
+border-radius:6px;
+object-fit:cover;
+background:#222;
+}
+
+.action-btn{
+padding:8px 12px;
+border:none;
+border-radius:6px;
+cursor:pointer;
+margin-right:6px;
+font-size:13px;
+}
+
+.preview{
+background:#0066ff;
+color:white;
+}
+
+.edit{
+background:#ff9800;
+color:white;
+}
+
+.delete{
+background:#d00000;
+color:white;
+}
+
+.empty{
+text-align:center;
+padding:60px;
+color:#777;
+font-size:18px;
+}
+
+@media(max-width:900px){
+
+table,thead,tbody,tr,td,th{
+display:block;
+}
+
+thead{
+display:none;
+}
+
+tr{
+padding:15px;
+border-bottom:1px solid #292929;
+}
+
+td{
+border:none;
+padding:8px 0;
+}
+
+}
+</style>
+
+</head>
+<body>
+
+<div class="header">
+
+<div class="logo">👻 <span>Spooky</span>Verse</div>
+
+<button class="back-btn" onclick="window.location.href='dashboard.html'">
+← Dashboard
+</button>
+
+</div>
+
+<div class="table-box">
+
+<table id="storyTable">
+
+<thead>
+
+<tr>
+
+<th>Image</th>
+<th>Title</th>
+<th>Category</th>
+<th>Date</th>
+<th>Actions</th>
+
+</tr>
+
+</thead>
+
+<tbody id="storyBody">
+
+</tbody>
+
+</table>
+
+<div id="emptyState" class="empty">
+
+📖 No stories published yet.
+
+</div>
+
+</div>
+
+<script>
+
+if(localStorage.getItem("spookyAdmin")!=="true"){
+window.location.href="login.html";
+}
+
+let stories=JSON.parse(localStorage.getItem("spookyStories"))||[];
+
+const body=document.getElementById("storyBody");
+const empty=document.getElementById("emptyState");
+
+function loadStories(){
+
+body.innerHTML="";
+
+if(stories.length===0){
+
+empty.style.display="block";
+
+return;
+
+}
+
+empty.style.display="none";
+
+stories.forEach((story,index)=>{
+
+body.innerHTML+=`
+
+<tr>
+
+<td>
+
+<img class="thumb" src="${story.image||'images/story1.jpg'}">
+
+</td>
+
+<td>${story.title}</td>
+
+<td>${story.category}</td>
+
+<td>${story.date||'-'}</td>
+
+<td>
+
+<button class="action-btn preview" onclick="previewStory(${index})">Preview</button>
+
+<button class="action-btn edit" onclick="editStory(${index})">Edit</button>
+
+<button class="action-btn delete" onclick="deleteStory(${index})">Delete</button>
+
+</td>
+
+</tr>
+
+`;
+
+});
+
+}
+
+function previewStory(index){
+
+const story=stories[index];
+
+alert(story.title+"\n\n"+story.content.substring(0,250)+"...");
+
+}
+
+function editStory(index){
+
+    localStorage.setItem("editStoryIndex", index);
+
+    window.location.href = "story-editor.html";
+
+}
+
+function deleteStory(index){
+
+if(confirm("Delete this story?")){
+
+stories.splice(index,1);
+
+localStorage.setItem("spookyStories",JSON.stringify(stories));
+
+loadStories();
+
+}
+
+}
+
+loadStories();
+
+</script>
+
+</body>
+</html>

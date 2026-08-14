@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SpookyVerse CMS Dashboard</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:#0b0b0b;
+    color:#fff;
+}
+
+/* Sidebar */
+
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    width:250px;
+    height:100vh;
+    background:#111;
+    border-right:1px solid #2a2a2a;
+    padding:25px 15px;
+}
+
+.logo{
+    text-align:center;
+    font-size:26px;
+    font-weight:bold;
+    color:#ff2a2a;
+    margin-bottom:35px;
+}
+
+.logo span{
+    color:white;
+}
+
+.menu{
+    list-style:none;
+}
+
+.menu li{
+    margin-bottom:8px;
+}
+
+.menu a{
+    display:block;
+    padding:14px 16px;
+    color:#ccc;
+    text-decoration:none;
+    border-radius:8px;
+    transition:.3s;
+    cursor:pointer;
+}
+
+.menu a:hover,
+.menu a.active{
+    background:#1f1f1f;
+    color:#ff2a2a;
+}
+
+/* Main */
+
+.main{
+    margin-left:250px;
+    padding:30px;
+}
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:35px;
+}
+
+.topbar h1{
+    font-size:30px;
+}
+
+.topbar p{
+    color:#888;
+    margin-top:6px;
+}
+
+.logout{
+    background:#b80000;
+    color:white;
+    border:none;
+    padding:11px 18px;
+    border-radius:7px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.logout:hover{
+    background:#e00000;
+}
+
+/* Stats */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+    margin-bottom:35px;
+}
+
+.stat-card{
+    background:#151515;
+    border:1px solid #2a2a2a;
+    border-radius:10px;
+    padding:24px;
+}
+
+.stat-card .icon{
+    font-size:28px;
+    margin-bottom:15px;
+}
+
+.stat-card h2{
+    font-size:30px;
+    margin-bottom:5px;
+}
+
+.stat-card p{
+    color:#888;
+}
+
+/* Actions */
+
+.section-title{
+    margin-bottom:18px;
+    font-size:22px;
+}
+
+.actions{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+    margin-bottom:35px;
+}
+
+.action-card{
+    background:#151515;
+    border:1px solid #2a2a2a;
+    border-radius:10px;
+    padding:25px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.action-card:hover{
+    border-color:#ff2a2a;
+    transform:translateY(-3px);
+}
+
+.big-icon{
+    font-size:35px;
+    margin-bottom:15px;
+}
+
+.action-card h3{
+    margin-bottom:8px;
+}
+
+.action-card p{
+    color:#888;
+    font-size:14px;
+}
+
+/* Stories */
+
+.stories-box{
+    background:#151515;
+    border:1px solid #2a2a2a;
+    border-radius:10px;
+    padding:25px;
+}
+
+.empty{
+    text-align:center;
+    padding:45px 20px;
+    color:#777;
+}
+
+.empty-icon{
+    font-size:50px;
+    margin-bottom:15px;
+}
+
+/* Responsive */
+
+@media(max-width:1000px){
+
+.stats{
+grid-template-columns:repeat(2,1fr);
+}
+
+.actions{
+grid-template-columns:1fr;
+}
+
+}
+
+@media(max-width:700px){
+
+.sidebar{
+position:relative;
+width:100%;
+height:auto;
+border-right:none;
+border-bottom:1px solid #2a2a2a;
+}
+
+.main{
+margin-left:0;
+padding:20px;
+}
+
+.stats{
+grid-template-columns:1fr;
+}
+
+.topbar{
+flex-direction:column;
+align-items:flex-start;
+gap:15px;
+}
+
+}
+</style>
+</head>
+
+<body>
+
+<aside class="sidebar">
+
+<div class="logo">👻 <span>Spooky</span>Verse</div>
+
+<ul class="menu">
+
+<li><a class="active">📊 Dashboard</a></li>
+
+<li><a onclick="addStory()">📝 Add New Story</a></li>
+
+<li><a onclick="manageStories()">📚 Manage Stories</a></li>
+
+<li><a>🏷️ Categories</a></li>
+
+<li><a>⚙️ Settings</a></li>
+
+</ul>
+
+</aside>
+
+<main class="main">
+
+<div class="topbar">
+
+<div>
+<h1>👻 Dashboard</h1>
+<p>Welcome to your SpookyVerse CMS</p>
+</div>
+
+<button class="logout" onclick="logout()">Logout</button>
+
+</div>
+
+<!-- Stats -->
+
+<div class="stats">
+
+<div class="stat-card">
+<div class="icon">📚</div>
+<h2 id="storyCount">0</h2>
+<p>Total Stories</p>
+</div>
+
+<div class="stat-card">
+<div class="icon">👻</div>
+<h2 id="ghostCount">0</h2>
+<p>Ghost Stories</p>
+</div>
+
+<div class="stat-card">
+<div class="icon">🏚️</div>
+<h2 id="hauntedCount">0</h2>
+<p>Haunted House</p>
+</div>
+
+<div class="stat-card">
+<div class="icon">🌫️</div>
+<h2 id="paranormalCount">0</h2>
+<p>Paranormal</p>
+</div>
+
+</div>
+
+<!-- Actions -->
+
+<h2 class="section-title">Quick Actions</h2>
+
+<div class="actions">
+
+<div class="action-card" onclick="addStory()">
+<div class="big-icon">📝</div>
+<h3>Add New Story</h3>
+<p>Create and publish a new horror story.</p>
+</div>
+
+<div class="action-card" onclick="manageStories()">
+<div class="big-icon">📚</div>
+<h3>Manage Stories</h3>
+<p>View, edit or delete your existing stories.</p>
+</div>
+
+<div class="action-card">
+<div class="big-icon">🏷️</div>
+<h3>Categories</h3>
+<p>Manage your story categories.</p>
+</div>
+
+</div>
+
+<!-- Recent Stories -->
+
+<h2 class="section-title">Recent Stories</h2>
+
+<div class="stories-box">
+
+<div class="empty">
+
+<div class="empty-icon">📖</div>
+
+<h3>No stories added yet</h3>
+
+<p>Your published stories will appear here.</p>
+
+</div>
+
+</div>
+
+</main>
+
+<script>
+
+if(localStorage.getItem("spookyAdmin")!=="true"){
+window.location.href="login.html";
+}
+
+function addStory(){
+window.location.href="story-editor.html";
+}
+
+function manageStories(){
+window.location.href="manage-stories.html";
+}
+
+function logout(){
+
+localStorage.removeItem("spookyAdmin");
+window.location.href="login.html";
+
+}
+
+function loadStats(){
+
+const stories=JSON.parse(localStorage.getItem("spookyStories"))||[];
+
+document.getElementById("storyCount").textContent=stories.length;
+
+document.getElementById("ghostCount").textContent=
+stories.filter(s=>s.category.includes("Ghost")).length;
+
+document.getElementById("hauntedCount").textContent=
+stories.filter(s=>s.category.includes("Haunted")).length;
+
+document.getElementById("paranormalCount").textContent=
+stories.filter(s=>s.category.includes("Paranormal")).length;
+
+}
+
+loadStats();
+
+</script>
+
+</body>
+</html>
