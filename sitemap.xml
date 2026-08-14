@@ -1,24 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-    <url>
-        <loc>https://spookyverse7star.github.io/SpookyVerse/</loc>
-    </url>
+  <url>
+    <loc>https://spookyverse7star.github.io/SpookyVerse/</loc>
+  </url>
 
-    <url>
-        <loc>https://spookyverse7star.github.io/SpookyVerse/stories.html</loc>
-    </url>
+  <url>
+    <loc>https://spookyverse7star.github.io/SpookyVerse/stories.html</loc>
+  </url>
 
-    <url>
-        <loc>https://spookyverse7star.github.io/SpookyVerse/categories.html</loc>
-    </url>
+  <url>
+    <loc>https://spookyverse7star.github.io/SpookyVerse/categories.html</loc>
+  </url>
 
-    <url>
-        <loc>https://spookyverse7star.github.io/SpookyVerse/about.html</loc>
-    </url>
+  <url>
+    <loc>https://spookyverse7star.github.io/SpookyVerse/about.html</loc>
+  </url>
 
-    <url>
-        <loc>https://spookyverse7star.github.io/SpookyVerse/contact.html</loc>
-    </url>
+  <url>
+    <loc>https://spookyverse7star.github.io/SpookyVerse/contact.html</loc>
+  </url>
+
+  <url>
+    <loc>https://spookyverse7star.github.io/SpookyVerse/story.html?story=1</loc>
+  </url>
+
+  <url>
+    <loc>https://spookyverse7star.github.io/SpookyVerse/story.html?story=2</loc>
+  </url>
+
+  <url>
+    <loc>https://spookyverse7star.github.io/SpookyVerse/story.html?story=3</loc>
+  </url>
 
 </urlset>
