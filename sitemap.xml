@@ -3,44 +3,30 @@
 
   <url>
     <loc>https://spookyverse7star.github.io/SpookyVerse/</loc>
- HEAD
-=======
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
- 9e5fd66 (Fix sitemap with story pages)
   </url>
 
   <url>
     <loc>https://spookyverse7star.github.io/SpookyVerse/stories.html</loc>
-HEAD
-=======
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
-9e5fd66 (Fix sitemap with story pages)
   </url>
 
   <url>
     <loc>https://spookyverse7star.github.io/SpookyVerse/categories.html</loc>
- HEAD
-=======
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
- 9e5fd66 (Fix sitemap with story pages)
   </url>
 
   <url>
     <loc>https://spookyverse7star.github.io/SpookyVerse/about.html</loc>
- HEAD
-=======
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-9e5fd66 (Fix sitemap with story pages)
   </url>
 
   <url>
     <loc>https://spookyverse7star.github.io/SpookyVerse/contact.html</loc>
- HEAD
-=======
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -61,19 +47,6 @@ HEAD
     <loc>https://spookyverse7star.github.io/SpookyVerse/story.html?story=3</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
- 9e5fd66 (Fix sitemap with story pages)
-  </url>
-
-  <url>
-    <loc>https://spookyverse7star.github.io/SpookyVerse/story.html?story=1</loc>
-  </url>
-
-  <url>
-    <loc>https://spookyverse7star.github.io/SpookyVerse/story.html?story=2</loc>
-  </url>
-
-  <url>
-    <loc>https://spookyverse7star.github.io/SpookyVerse/story.html?story=3</loc>
   </url>
 
 </urlset>
