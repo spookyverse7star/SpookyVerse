@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Login | SpookyVerse</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-family: 'Poppins', sans-serif;
+
+            background:
+                radial-gradient(circle at center, #171717 0%, #080808 60%, #000 100%);
+
+            color: #fff;
+        }
+
+        .login-box {
+            width: 90%;
+            max-width: 420px;
+
+            padding: 40px;
+
+            background: #111;
+
+            border: 1px solid #292929;
+            border-radius: 16px;
+
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+
+            text-align: center;
+        }
+
+        .logo {
+            font-family: 'Cinzel', serif;
+
+            font-size: 30px;
+
+            color: #e32929;
+
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #888;
+
+            font-size: 14px;
+
+            margin-bottom: 32px;
+        }
+
+        .login-box label {
+            display: block;
+
+            text-align: left;
+
+            margin-bottom: 7px;
+
+            color: #ccc;
+
+            font-size: 14px;
+        }
+
+        .login-box input {
+            width: 100%;
+
+            padding: 13px 14px;
+
+            margin-bottom: 18px;
+
+            background: #181818;
+
+            color: #fff;
+
+            border: 1px solid #333;
+
+            border-radius: 8px;
+
+            outline: none;
+
+            font-family: inherit;
+
+            font-size: 14px;
+        }
+
+        .login-box input:focus {
+            border-color: #e32929;
+        }
+
+        .login-button {
+            width: 100%;
+
+            padding: 13px;
+
+            margin-top: 5px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            background: #e32929;
+
+            color: #fff;
+
+            font-family: inherit;
+
+            font-size: 15px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition: 0.25s ease;
+        }
+
+        .login-button:hover {
+            background: #ff3d3d;
+        }
+
+        .error-message {
+            display: none;
+
+            margin-top: 18px;
+
+            padding: 10px;
+
+            background: rgba(227, 41, 41, 0.1);
+
+            border: 1px solid #5c2020;
+
+            border-radius: 7px;
+
+            color: #ff6b6b;
+
+            font-size: 13px;
+        }
+
+        .back-link {
+            display: inline-block;
+
+            margin-top: 25px;
+
+            color: #888;
+
+            font-size: 13px;
+        }
+
+        .back-link:hover {
+            color: #e32929;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="login-box">
+
+        <div class="logo">
+            👻 SpookyVerse
+        </div>
+
+        <p class="subtitle">
+            Admin Panel
+        </p>
+
+        <form id="login-form">
+
+            <label for="username">
+                Username
+            </label>
+
+            <input
+                type="text"
+                id="username"
+                placeholder="Enter username"
+                autocomplete="username"
+                required
+            >
+
+            <label for="password">
+                Password
+            </label>
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Enter password"
+                autocomplete="current-password"
+                required
+            >
+
+            <button
+                type="submit"
+                class="login-button"
+            >
+                🔐 Login
+            </button>
+
+        </form>
+
+        <div
+            id="error-message"
+            class="error-message"
+        >
+            Incorrect username or password.
+        </div>
+
+        <a
+            href="index.html"
+            class="back-link"
+        >
+            ← Back to SpookyVerse
+        </a>
+
+    </div>
+
+
+    <script>
+
+        /*
+        ============================================
+        SPOOKYVERSE LOCAL CMS LOGIN
+        ============================================
+
+        IMPORTANT:
+        This is a static/local CMS login.
+        It is NOT a secure production authentication
+        system because GitHub Pages is static hosting.
+
+        We will improve the workflow later.
+        ============================================
+        */
+
+        const loginForm = document.getElementById("login-form");
+        const errorMessage = document.getElementById("error-message");
+
+        loginForm.addEventListener("submit", function (event) {
+
+            event.preventDefault();
+
+            const username =
+                document.getElementById("username").value.trim();
+
+            const password =
+                document.getElementById("password").value;
+
+            /*
+            Temporary local credentials.
+
+            We will decide the final credentials
+            before putting this system online.
+            */
+
+            if (
+                username === "admin" &&
+                password === "spookyverse"
+            ) {
+
+                sessionStorage.setItem(
+                    "spookyverseAdmin",
+                    "true"
+                );
+
+                window.location.href = "dashboard.html";
+
+            } else {
+
+                errorMessage.style.display = "block";
+
+            }
+
+        });
+
+    </script>
+
+</body>
+
+</html>

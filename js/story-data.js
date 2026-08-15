@@ -224,3 +224,29 @@ const stories = {
     }
 
 };
+
+// =========================
+// Merge CMS Stories
+// =========================
+
+(function(){
+
+    const cmsStories = JSON.parse(localStorage.getItem("spookyStories")) || [];
+
+    let nextId = Math.max(...Object.keys(stories).map(Number), 0) + 1;
+
+    cmsStories.forEach(story => {
+
+        stories[nextId++] = {
+            title: story.title,
+            category: story.category,
+            image: story.image || "images/story1.jpg",
+            date: story.date || "📅 August 2026",
+            time: story.time || "⏱ 10 min read",
+            content: story.content,
+            youtubeId: story.youtubeId || ""
+        };
+
+    });
+
+})();

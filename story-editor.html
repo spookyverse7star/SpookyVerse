@@ -86,8 +86,8 @@ textarea{min-height:300px;resize:vertical;}
 </div>
 
 <div class="form-group">
-<label>Tags</label>
-<input id="tags" type="text" placeholder="ghost, horror">
+<label>YouTube Video ID</label>
+<input id="youtubeId" type="text" placeholder="XYW2M4PeMFE">
 </div>
 
 <div class="form-group">
@@ -96,8 +96,13 @@ textarea{min-height:300px;resize:vertical;}
 </div>
 
 <div class="buttons">
-<button class="publish-btn" onclick="publishStory()">🚀 Publish Story</button>
+<button class="publish-btn" onclick="generateStoryCode()">👻 Generate Code</button>
 <button class="draft-btn" onclick="saveDraft()">💾 Save Draft</button>
+</div>
+
+<div class="form-group" style="margin-top:25px;">
+<label>Generated story-data.js Code</label>
+<textarea id="generatedCode" readonly style="min-height:220px;"></textarea>
 </div>
 
 </section>
@@ -151,43 +156,50 @@ document.getElementById("imagePreview").innerHTML="🖼️ Image Preview";
 
 }
 
-function publishStory(){
+function generateStoryCode(){
 
-    let stories = JSON.parse(localStorage.getItem("spookyStories")) || [];
+    const title = document.getElementById("title").value.trim();
+    const category = document.getElementById("category").value;
+    const image = document.getElementById("image").value.trim();
+    const date = document.getElementById("date").value;
+    const time = document.getElementById("time").value.trim();
+    const youtubeId = document.getElementById("youtubeId").value.trim();
+    const story = document.getElementById("story").value.trim();
 
-    const editIndex = localStorage.getItem("editStoryIndex");
-
-    const newStory = {
-        id: editIndex !== null ? stories[editIndex].id : Date.now(),
-        title: document.getElementById("title").value.trim(),
-        category: document.getElementById("category").value,
-        image: document.getElementById("image").value.trim(),
-        date: document.getElementById("date").value,
-        time: document.getElementById("time").value.trim(),
-        tags: document.getElementById("tags").value.trim(),
-        content: document.getElementById("story").value.trim()
-    };
-
-    if(!newStory.title || !newStory.content){
-        alert("Please enter both title and story.");
+    if(!title || !story){
+        alert("Please enter Story Title and Story Content.");
         return;
     }
 
-    if(editIndex !== null){
+    // Find next story number automatically
+    let lastStory = parseInt(localStorage.getItem("lastStoryNumber") || "6");
+    let nextStory = lastStory + 1;
+    localStorage.setItem("lastStoryNumber", nextStory);
 
-        stories[editIndex] = newStory;
+    // Convert paragraphs into HTML
+    const htmlStory = story
+        .split(/\n\s*\n/)
+        .map(p => `<p>\n${p}\n</p>`)
+        .join("\n\n");
 
-        localStorage.removeItem("editStoryIndex");
+    // story-data.js code
+    const storyCode = `${nextStory}: {
+    title: "${title}",
+    category: "${category}",
+    image: "${image}",
+    date: "📅 ${date}",
+    time: "⏱️ ${time}",
+    youtubeId: "${youtubeId}",
 
-        alert("Story Updated Successfully!");
+    content: \`
+${htmlStory}
+\`
+},`;
 
-    }else{
+    document.getElementById("generatedCode").value = storyCode;
 
-        stories.push(newStory);
-
-        alert("Story Published Successfully!");
-
-    }
+    alert("Story #" + nextStory + " generated successfully!");
+}
 
     localStorage.setItem("spookyStories", JSON.stringify(stories));
 

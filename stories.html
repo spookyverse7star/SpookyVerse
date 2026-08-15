@@ -100,7 +100,7 @@ All
 </div>
 
 
-<div class="story-grid">
+<div class="story-grid" id="storyGrid">
 
 
 <!-- STORY 1 -->
@@ -349,6 +349,38 @@ They heard someone calling their names from deep inside the forest.
 
 
 <script src="js/script.js"></script>
+<script src="js/story-data.js"></script>
+
+<script>
+const grid = document.getElementById("storyGrid");
+
+// Keep your existing 6 cards as fallback
+const existingCards = grid.innerHTML;
+
+// Create cards for CMS stories only
+const cmsStories = JSON.parse(localStorage.getItem("spookyStories")) || [];
+
+let nextId = 7;
+
+cmsStories.forEach(story => {
+
+    let filter = "ghost";
+
+    if(story.category.includes("Haunted")) filter="haunted";
+    else if(story.category.includes("Urban")) filter="urban";
+    else if(story.category.includes("Paranormal")) filter="paranormal";
+
+    grid.innerHTML += `
+    <a href="story.html?story=${nextId++}" class="story-card" data-category="${filter}">
+        <img src="${story.image || 'images/story1.jpg'}" alt="${story.title}">
+        <div class="story-info">
+            <span class="badge">${story.category}</span>
+            <h3>${story.title}</h3>
+            <p>${story.content.replace(/<[^>]+>/g,'').substring(0,70)}...</p>
+        </div>
+    </a>`;
+});
+</script>
 
 </body>
 
