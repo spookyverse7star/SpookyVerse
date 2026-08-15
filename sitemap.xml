@@ -4,57 +4,26 @@
   <url>
     <loc>https://spookyverse7star.github.io/SpookyVerse/</loc>
     <lastmod>2026-08-15</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
   </url>
 
   <url>
     <loc>https://spookyverse7star.github.io/SpookyVerse/stories.html</loc>
     <lastmod>2026-08-15</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
   </url>
 
   <url>
     <loc>https://spookyverse7star.github.io/SpookyVerse/categories.html</loc>
     <lastmod>2026-08-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://spookyverse7star.github.io/SpookyVerse/about.html</loc>
     <lastmod>2026-08-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
   </url>
 
   <url>
     <loc>https://spookyverse7star.github.io/SpookyVerse/contact.html</loc>
     <lastmod>2026-08-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-
-  <url>
-    <loc>https://spookyverse7star.github.io/SpookyVerse/story.html?story=1</loc>
-    <lastmod>2026-08-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://spookyverse7star.github.io/SpookyVerse/story.html?story=2</loc>
-    <lastmod>2026-08-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://spookyverse7star.github.io/SpookyVerse/story.html?story=3</loc>
-    <lastmod>2026-08-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
   </url>
 
 </urlset>
