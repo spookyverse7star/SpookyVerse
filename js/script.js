@@ -5,7 +5,6 @@
 document.addEventListener("DOMContentLoaded", function () {
 
     const searchInput = document.querySelector(".search-box input");
-    const storyCards = document.querySelectorAll(".story-card");
     const filterButtons = document.querySelectorAll(".filter-btn");
 
     let currentCategory = "all";
@@ -25,9 +24,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // =================================
     // FILTER STORIES
+    // (re-queries .story-card each run so cards added later —
+    //  e.g. fetched from stories.json — are included too)
     // =================================
 
     function filterStories() {
+
+        const storyCards = document.querySelectorAll(".story-card");
 
         const searchText = searchInput
             ? searchInput.value.toLowerCase().trim()
@@ -53,6 +56,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
         });
     }
+
+    // Exposed so cards added asynchronously after page load
+    // (e.g. once stories.json finishes loading) can trigger a re-filter.
+    window.spookyRefilterStories = filterStories;
 
 
     // =================================

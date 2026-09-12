@@ -345,41 +345,84 @@ They heard someone calling their names from deep inside the forest.
 
 </p>
 
+<p class="footer-legal">
+<a href="privacy-policy.html">Privacy Policy</a>·
+<a href="terms.html">Terms of Use</a>
+</p>
+
 </footer>
 
 
+<div id="cookie-banner" class="cookie-banner" hidden>
+<p>SpookyVerse uses cookies for ads and analytics. By continuing, you agree to our <a href="privacy-policy.html">Privacy Policy</a>.</p>
+<button id="cookie-accept" type="button">Got it</button>
+</div>
+
 <script src="js/script.js"></script>
+<script src="js/consent.js"></script>
 <script src="js/story-data.js"></script>
 
 <script>
 const grid = document.getElementById("storyGrid");
 
-// Keep your existing 6 cards as fallback
-const existingCards = grid.innerHTML;
+// Stories added through the CMS (/admin) live in stories.json.
+// (Older browser-only drafts from the local admin panel still show too,
+// as a fallback, so nothing you'd drafted before disappears.)
+fetch("stories.json")
+    .then(function (response) { return response.json(); })
+    .then(function (data) {
+        const cmsStories = (data && data.stories) || [];
+        appendCards(cmsStories.map(function (s) {
+            return {
+                id: s.id,
+                filter: s.filterCategory || "ghost",
+                image: s.image,
+                title: s.title,
+                categoryLabel: s.categoryLabel,
+                excerpt: s.excerpt || (s.content || "").replace(/<[^>]+>/g, "").substring(0, 70) + "..."
+            };
+        }));
+    })
+    .catch(function () { /* stories.json missing or unreachable — skip quietly */ });
 
-// Create cards for CMS stories only
-const cmsStories = JSON.parse(localStorage.getItem("spookyStories")) || [];
+// Legacy local-only drafts (saved by the old admin dashboard in this browser only)
+const legacyDrafts = JSON.parse(localStorage.getItem("spookyStories")) || [];
+let legacyId = 1000; // high range so these never collide with real story IDs
 
-let nextId = 7;
-
-cmsStories.forEach(story => {
-
+appendCards(legacyDrafts.map(function (story) {
     let filter = "ghost";
+    if (story.category.includes("Haunted")) filter = "haunted";
+    else if (story.category.includes("Urban")) filter = "urban";
+    else if (story.category.includes("Paranormal")) filter = "paranormal";
 
-    if(story.category.includes("Haunted")) filter="haunted";
-    else if(story.category.includes("Urban")) filter="urban";
-    else if(story.category.includes("Paranormal")) filter="paranormal";
+    return {
+        id: legacyId++,
+        filter: filter,
+        image: story.image || "images/story1.jpg",
+        title: story.title,
+        categoryLabel: story.category,
+        excerpt: (story.story || story.content || "").replace(/<[^>]+>/g, "").substring(0, 70) + "..."
+    };
+}));
 
-    grid.innerHTML += `
-    <a href="story.html?story=${nextId++}" class="story-card" data-category="${filter}">
-        <img src="${story.image || 'images/story1.jpg'}" alt="${story.title}">
-        <div class="story-info">
-            <span class="badge">${story.category}</span>
-            <h3>${story.title}</h3>
-            <p>${story.content.replace(/<[^>]+>/g,'').substring(0,70)}...</p>
-        </div>
-    </a>`;
-});
+function appendCards(items) {
+    items.forEach(function (item) {
+        grid.innerHTML += `
+        <a href="story.html?story=${item.id}" class="story-card" data-category="${item.filter}">
+            <img src="${item.image || 'images/story1.jpg'}" alt="${item.title}" loading="lazy">
+            <div class="story-info">
+                <span class="badge">${item.categoryLabel || ""}</span>
+                <h3>${item.title}</h3>
+                <p>${item.excerpt}</p>
+            </div>
+        </a>`;
+    });
+
+    // Make sure search/filter buttons pick up the newly added cards
+    if (window.spookyRefilterStories) {
+        window.spookyRefilterStories();
+    }
+}
 </script>
 
 </body>

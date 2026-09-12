@@ -132,6 +132,9 @@ if(localStorage.getItem("spookyAdmin")!=="true"){
 window.location.href="login.html";
 }
 
+let stories = JSON.parse(localStorage.getItem("spookyStories")) || [];
+let editIndex = localStorage.getItem("editStoryIndex");
+
 function updatePreview(){
 
 const title=document.getElementById("title").value;
@@ -156,6 +159,25 @@ document.getElementById("imagePreview").innerHTML="🖼️ Image Preview";
 
 }
 
+function loadEditStory(){
+
+    if(editIndex===null || editIndex===undefined || !stories[editIndex]) return;
+
+    const story = stories[editIndex];
+
+    document.getElementById("title").value = story.title || "";
+    document.getElementById("category").value = story.category || "👻 Ghost Stories";
+    document.getElementById("image").value = story.image || "";
+    document.getElementById("date").value = story.date || "";
+    document.getElementById("time").value = story.time || "";
+    document.getElementById("youtubeId").value = story.youtubeId || "";
+    document.getElementById("story").value = story.story || "";
+
+    document.querySelector(".page-title h1").textContent = "📝 Edit Story";
+
+    updatePreview();
+}
+
 function generateStoryCode(){
 
     const title = document.getElementById("title").value.trim();
@@ -171,7 +193,21 @@ function generateStoryCode(){
         return;
     }
 
-    // Find next story number automatically
+    // Save this story into the CMS list (localStorage) so it shows up
+    // in Dashboard stats and Manage Stories immediately.
+    const storyRecord = { title, category, image, date, time, youtubeId, story };
+
+    if(editIndex!==null && editIndex!==undefined && stories[editIndex]){
+        stories[editIndex] = storyRecord;
+        localStorage.removeItem("editStoryIndex");
+        editIndex = null;
+    }else{
+        stories.push(storyRecord);
+    }
+
+    localStorage.setItem("spookyStories", JSON.stringify(stories));
+
+    // Find next story number automatically (for the story-data.js snippet)
     let lastStory = parseInt(localStorage.getItem("lastStoryNumber") || "6");
     let nextStory = lastStory + 1;
     localStorage.setItem("lastStoryNumber", nextStory);
@@ -182,7 +218,8 @@ function generateStoryCode(){
         .map(p => `<p>\n${p}\n</p>`)
         .join("\n\n");
 
-    // story-data.js code
+    // story-data.js code — copy this into js/story-data.js to make the
+    // story permanently live for every visitor (see README/instructions).
     const storyCode = `${nextStory}: {
     title: "${title}",
     category: "${category}",
@@ -198,15 +235,27 @@ ${htmlStory}
 
     document.getElementById("generatedCode").value = storyCode;
 
-    alert("Story #" + nextStory + " generated successfully!");
+    alert("Saved to your story list. Copy the generated code below into js/story-data.js to publish it site-wide as story #" + nextStory + ".");
 }
 
-    localStorage.setItem("spookyStories", JSON.stringify(stories));
+function saveDraft(){
 
-    window.location.href = "dashboard.html";
-    
-    loadEditStory();
+    const draft = {
+        title: document.getElementById("title").value,
+        category: document.getElementById("category").value,
+        image: document.getElementById("image").value,
+        date: document.getElementById("date").value,
+        time: document.getElementById("time").value,
+        youtubeId: document.getElementById("youtubeId").value,
+        story: document.getElementById("story").value
+    };
+
+    localStorage.setItem("spookyDraft", JSON.stringify(draft));
+    alert("Draft saved in this browser. It will be here next time you open the editor.");
 }
+
+loadEditStory();
+
 </script>
 
 </body>

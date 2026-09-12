@@ -19,6 +19,8 @@
 
 <link rel="stylesheet" href="css/style.css">
 
+<!-- Paste your AdSense script tag here once approved (see index.html for the template) -->
+
 </head>
 
 <body>
@@ -92,6 +94,13 @@
                 </div>
             </div>
         </section>
+
+        <!-- AD SLOT — in-content, right after the intro -->
+        <div class="ad-slot ad-slot--incontent">
+            <span class="ad-label">Advertisement</span>
+            <div class="ad-frame">Ad slot — in-content unit</div>
+        </div>
+
 <section class="story-content">
             <h2>📖 कहानी पढ़ें</h2>
             <div id="story-content" class="reading-container">
@@ -99,9 +108,21 @@
             </div>
         </section>
 
+        <!-- AD SLOT — end of story, high engagement point -->
+        <div class="ad-slot ad-slot--incontent">
+            <span class="ad-label">Advertisement</span>
+            <div class="ad-frame">Ad slot — in-content unit</div>
+        </div>
+
     </article>
 
     <aside class="story-sidebar">
+
+        <!-- AD SLOT — sidebar, sticky alongside the reading area -->
+        <div class="ad-slot ad-slot--sidebar">
+            <span class="ad-label">Advertisement</span>
+            <div class="ad-frame">Ad slot — sidebar unit</div>
+        </div>
 
         <section id="youtube-section" class="youtube-section" hidden>
             <h2>🎬 Watch This Story</h2>
@@ -240,14 +261,25 @@ Contact
 
 </p>
 
+<p class="footer-legal">
+<a href="privacy-policy.html">Privacy Policy</a>·
+<a href="terms.html">Terms of Use</a>
+</p>
+
 </footer>
 
+<div id="cookie-banner" class="cookie-banner" hidden>
+    <p>SpookyVerse uses cookies for ads and analytics. By continuing, you agree to our <a href="privacy-policy.html">Privacy Policy</a>.</p>
+    <button id="cookie-accept" type="button">Got it</button>
+</div>
 
 <script src="js/script.js"></script>
 
 <script src="js/story-data.js"></script>
 
 <script src="js/story.js"></script>
+
+<script src="js/consent.js"></script>
 
 </body>
 

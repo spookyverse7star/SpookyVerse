@@ -1,0 +1,4 @@
+# Once your Google AdSense account is approved, replace pub-0000000000000000
+# below with your real publisher ID (found in AdSense under Account > Settings).
+# This file must live at the site root: https://yourdomain.com/ads.txt
+google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0

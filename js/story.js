@@ -2,13 +2,54 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const params = new URLSearchParams(window.location.search);
     const storyId = params.get("story") || "1";
-    const story = stories[storyId];
 
-    // If story doesn't exist, return to Stories page
-    if (!story) {
-        window.location.href = "stories.html";
+    // Stories 1-6 (and any hand-added ones) live in js/story-data.js.
+    // Stories added through the CMS (/admin) live in stories.json.
+    const hardcodedStory = stories[storyId];
+
+    if (hardcodedStory) {
+        renderStory(hardcodedStory, storyId);
         return;
     }
+
+    fetch("stories.json")
+        .then(function (response) { return response.json(); })
+        .then(function (data) {
+            const list = (data && data.stories) || [];
+            const match = list.find(function (item) {
+                return String(item.id) === String(storyId);
+            });
+
+            if (!match) {
+                window.location.href = "stories.html";
+                return;
+            }
+
+            renderStory({
+                title: match.title,
+                category: match.categoryLabel,
+                image: match.image,
+                date: match.date,
+                time: match.time,
+                youtubeId: match.youtubeId,
+                content: textToParagraphs(match.content)
+            }, storyId);
+        })
+        .catch(function () {
+            window.location.href = "stories.html";
+        });
+
+    function textToParagraphs(text) {
+        if (!text) return "";
+        // Already contains HTML tags (e.g. hand-written) — use as-is.
+        if (/<\s*p[\s>]/i.test(text)) return text;
+        return text
+            .split(/\n\s*\n/)
+            .map(function (p) { return "<p>" + p.trim() + "</p>"; })
+            .join("\n");
+    }
+
+    function renderStory(story, storyId) {
 
     // ===============================
     // STORY ELEMENTS
@@ -192,5 +233,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     ogImage.content =
         new URL(story.image, window.location.href).href;
+
+    } // end renderStory
 
 });

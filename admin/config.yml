@@ -1,0 +1,60 @@
+# ============================================================
+# SpookyVerse — Decap CMS configuration
+#
+# This file controls how the /admin panel connects to GitHub and
+# what content editors are allowed to manage. See the setup guide
+# for the two backend options and which one to pick.
+# ============================================================
+
+backend:
+  # OPTION A (recommended, easiest): Netlify Identity + Git Gateway.
+  # Works with zero custom server code. Requires the site to also be
+  # deployed on Netlify (free) alongside/instead of GitHub Pages, with
+  # Identity + Git Gateway turned on in the Netlify dashboard.
+  name: git-gateway
+  branch: main
+
+  # OPTION B: stay purely on GitHub Pages, no Netlify involved.
+  # Requires you to create a GitHub OAuth App and deploy a small OAuth
+  # proxy (a free Cloudflare Worker or Vercel function). Comment out
+  # OPTION A above and uncomment the 3 lines below once your proxy is live.
+  # name: github
+  # repo: spookyverse7star/SpookyVerse   # change to your GitHub owner/repo
+  # base_url: https://YOUR-OAUTH-PROXY-URL   # from your deployed OAuth proxy
+
+site_url: https://spookyverse7star.github.io/SpookyVerse/
+display_url: https://spookyverse7star.github.io/SpookyVerse/
+logo_url: ../favicon.svg
+
+media_folder: "images"
+public_folder: "/images"
+
+collections:
+
+  - name: "stories"
+    label: "Horror Stories"
+    files:
+      - file: "stories.json"
+        name: "stories"
+        label: "All Stories"
+        description: "Every story added here appears live on stories.html and is readable at story.html?story=<ID> as soon as this is published."
+        fields:
+          - label: "Stories"
+            name: "stories"
+            widget: "list"
+            summary: "{{fields.title}} (#{{fields.id}})"
+            fields:
+              - { label: "ID (must be unique, use 7, 8, 9...)", name: "id", widget: "number", value_type: "int", hint: "Story #1-6 are already used in js/story-data.js. Start new stories at 7 and count up." }
+              - { label: "Title", name: "title", widget: "string" }
+              - label: "Filter Category"
+                name: "filterCategory"
+                widget: "select"
+                options: ["ghost", "haunted", "urban", "paranormal"]
+                hint: "Controls which filter button on Stories page shows this."
+              - { label: "Category Badge Text", name: "categoryLabel", widget: "string", hint: "e.g. 👻 Ghost Story" }
+              - { label: "Cover Image", name: "image", widget: "image" }
+              - { label: "Date", name: "date", widget: "string", hint: "e.g. 📅 August 2026" }
+              - { label: "Reading Time", name: "time", widget: "string", hint: "e.g. ⏱ 12 min read" }
+              - { label: "YouTube Video ID (optional)", name: "youtubeId", widget: "string", required: false }
+              - { label: "Card Excerpt", name: "excerpt", widget: "text", hint: "Short teaser shown on the story card." }
+              - { label: "Story Content", name: "content", widget: "text", hint: "Write the story in plain paragraphs, with a blank line between paragraphs. No need to type HTML — it's added automatically." }

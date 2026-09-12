@@ -70,7 +70,7 @@ display:flex;
 justify-content:center;
 align-items:center;
 text-align:center;
-background:url("../images/hero.png") center/cover no-repeat;
+background:url("../images/hero.jpg") center/cover no-repeat;
 }
 
 .overlay{
@@ -1608,4 +1608,167 @@ border-color:#d62828;
     .story-page .youtube-section[hidden]{
         display:none;
     }
+}
+
+/* =====================================================
+   MONETIZATION ADD-ONS — ad slots, YouTube CTA
+   Appended for the earnings-focused redesign.
+   Scoped with new, unique class names so nothing above
+   this line is affected on any existing page.
+===================================================== */
+
+.ad-slot{
+    width:90%;
+    max-width:1400px;
+    margin:50px auto;
+    text-align:center;
+}
+
+.ad-slot .ad-label{
+    display:block;
+    font-size:11px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:#555;
+    margin-bottom:8px;
+}
+
+.ad-slot .ad-frame{
+    min-height:100px;
+    border:1px dashed #2c2c2c;
+    border-radius:10px;
+    background:#0d0d0d;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#444;
+    font-size:13px;
+}
+
+.ad-slot--leaderboard .ad-frame{ min-height:90px; }
+.ad-slot--incontent .ad-frame{ min-height:250px; }
+.ad-slot--sidebar{ margin:0 0 22px; }
+.ad-slot--sidebar .ad-frame{ min-height:250px; }
+
+/* YOUTUBE SUBSCRIBE CTA */
+
+.yt-cta{
+    width:90%;
+    max-width:1400px;
+    margin:0 auto 90px;
+    padding:45px 40px;
+    border-radius:20px;
+    background:linear-gradient(135deg,#1a0000,#0d0d0d 65%);
+    border:1px solid rgba(214,40,40,.35);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:30px;
+    flex-wrap:wrap;
+}
+
+.yt-cta-text h2{
+    font-family:'Cinzel',serif;
+    font-size:28px;
+    margin-bottom:10px;
+}
+
+.yt-cta-text p{
+    color:#ccc;
+    max-width:520px;
+    line-height:1.6;
+}
+
+.yt-cta-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background:#ff0000;
+    color:#fff;
+    font-weight:700;
+    padding:16px 32px;
+    border-radius:10px;
+    white-space:nowrap;
+    transition:.3s;
+}
+
+.yt-cta-btn:hover{
+    background:#d90000;
+    transform:translateY(-3px);
+}
+
+@media(max-width:700px){
+    .yt-cta{
+        flex-direction:column;
+        text-align:center;
+        padding:35px 22px;
+    }
+}
+
+/* FOOTER LEGAL ROW */
+
+.footer-legal{
+    margin-top:14px;
+    font-size:13px;
+}
+
+.footer-legal a{
+    color:#777;
+    margin:0 8px;
+}
+
+.footer-legal a:hover{
+    color:#d62828;
+}
+
+/* COOKIE / CONSENT NOTICE (required once ads go live) */
+
+.cookie-banner{
+    position:fixed;
+    left:20px;
+    right:20px;
+    bottom:20px;
+    max-width:640px;
+    margin:0 auto;
+    background:#141414;
+    border:1px solid #2c2c2c;
+    border-radius:14px;
+    padding:18px 22px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+    flex-wrap:wrap;
+    z-index:2000;
+    box-shadow:0 15px 40px rgba(0,0,0,.5);
+}
+
+.cookie-banner p{
+    flex:1;
+    min-width:220px;
+    font-size:13px;
+    color:#ccc;
+    line-height:1.6;
+}
+
+.cookie-banner a{
+    color:#ff6b6b;
+}
+
+.cookie-banner button{
+    background:#d62828;
+    color:#fff;
+    border:none;
+    padding:10px 20px;
+    border-radius:8px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.cookie-banner button:hover{
+    background:#ff3d3d;
+}
+
+.cookie-banner[hidden]{
+    display:none;
 }
